@@ -61,19 +61,19 @@ def update_dns_record(record_id, name, cf_ip):
     if response.status_code == 200:
         print(f"cf_dns_change success: ---- Time: " + str(
             time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())) + " ---- ip：" + str(cf_ip))
-        return "ip:" + str(cf_ip) + "更新完成."
+        return str(cf_ip) + "已更新."
     else:
         traceback.print_exc()
         print(f"cf_dns_change ERROR: ---- Time: " + str(
             time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())) + " ---- MESSAGE: ")
-        return "ip:" + str(cf_ip) + "更新未完成."
+        return str(cf_ip) + "未更新."
 
 # 消息推送
 def push_plus(content):
     url = 'http://www.pushplus.plus/send'
     data = {
         "token": PUSHPLUS_TOKEN,
-        "title": "ip.ilava.xyz优选DNSCF推送",
+        "title": "ip.ilava.xyz优选",
         "content": content,
         "template": "markdown",
         "channel": "wechat"
