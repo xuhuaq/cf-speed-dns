@@ -61,12 +61,12 @@ def update_dns_record(record_id, name, cf_ip):
     if response.status_code == 200:
         print(f"cf_dns_change success: ---- Time: " + str(
             time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())) + " ---- ip：" + str(cf_ip))
-        return "ip:" + str(cf_ip) + "解析" + str(name) + "成功"
+        return "ip:" + str(cf_ip) + "更新到" + str(name) + "完成；"
     else:
         traceback.print_exc()
         print(f"cf_dns_change ERROR: ---- Time: " + str(
             time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())) + " ---- MESSAGE: ")
-        return "ip:" + str(cf_ip) + "解析" + str(name) + "失败"
+        return "ip:" + str(cf_ip) + "更新到" + str(name) + "未完成；"
 
 # 消息推送
 def push_plus(content):
@@ -95,7 +95,7 @@ def main():
         dns = update_dns_record(dns_records[index], CF_DNS_NAME, ip_addresses[index])
         push_plus_content.append(dns)
 
-    push_plus('\n'.join(push_plus_content))
+    push_plus(.join(push_plus_content))
 
 if __name__ == '__main__':
     main()
